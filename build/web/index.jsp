@@ -25,8 +25,8 @@
                       <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-plus-circle"></i> Ofertas del Dia</a>
                   </li>                   
                   <li class="nav-item">
-                      <a class="nav-link" href="./Controlador?accion=carrito"><i class="fas fa-cart-plus">(<label style="color: darkorange">${cont}</label>)</i> Lista de deseos</a>
-                  </li> 
+                      <a class="nav-link" href="./Controlador?accion=carrito"><i class="fas fa-cart-plus">(<label style="color: darkorange">${cont}</label>)</i> Lista de solicitudes</a>
+                  </li>
                   <li class="nav-item">
                       <a class="nav-link" href="./Controlador?accion=NuevoProducto">Productos</a>
                   </li> 
@@ -48,7 +48,7 @@
                       <a class="dropdown-item" href="#">${user}</a>
                       <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal">${correo}</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="Controlador?accion=MisCompras">Mis solicitudes</a>
+                      <a class="dropdown-item" href="Controlador?accion=MisCompras">Mis compras</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="./Controlador?accion=Salir"> <i class="fas fa-arrow-right"> Salir</i></a>                        
                   </div>
@@ -56,33 +56,28 @@
           </div>
         </nav>
         <div class="container mt-4">
-            <div class="row">
-                <c:forEach var="p" items="${productos}">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <div class="card">
-                                <div class="card-header">
-                                    <label class="col-sm-12">${p.getNombres()}</label>                                    
-                                </div>
-                                <div class="card-body text-center d-flex">
-                                    <label>S/.${p.getPrecio()}</i></label>
-                                    <img src="${p.getImagen()}" width="330" height="298">
-                                </div>
-                                <div class="card-footer">
-                                    <div class="col-sm-12">
-                                        <label>${p.getDescripcion()}</label>                                   
-                                    </div>
-                                    <div class=" col-sm-12 text-center">                                
-                                        <a href="Controlador?accion=AgregarCarrito&id=${p.getId()}" class="btn btn2 btn-outline-primary">Agregar a Carrito<i class="fas fa-cart-plus"></i></a>
-                                        <a href="Controlador?accion=Comprar&id=${p.getId()}" class="btn btn-danger">Comprar</a>
-                                    </div>                         
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <c:forEach var="p" items="${productos}">
+              <div class="col-sm-4 mb-4">
+                <div class="card h-100 ">
+                  <div class="card-header">
+                    <label>S/.${p.getPrecio()}</i></label>
+                    <img src="${p.getImagen()}" class="card-img-top" alt="Producto" width="330" height="298">
+                  </div>
+                  <div class="card-body h-100">
+                    <h5 class="card-title">${p.getNombres()}</h5>
+                    <p class="card-text">${p.getDescripcion()}</p>
+                  </div>
+                  <div class=" col-sm-12 text-center p-2">                                
+                    <a href="Controlador?accion=AgregarCarrito&id=${p.getId()}" class="btn btn2 btn-outline-primary">Agregar a la lista<i class="fas fa-cart-plus"></i></a>
+                    <a href="Controlador?accion=Comprar&id=${p.getId()}" class="btn btn-danger">Ver lista</a>
+                  </div>
+                </div>
+              </div>
+            </c:forEach>
+          </div>
         </div>
+        
         <!-- Modal Iniciar Session o Registrarse -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -127,24 +122,35 @@
                                     <form action="Controlador">                               
                                         <div class="form-group">
                                             <label>Nombres</label>
-                                            <input type="text" name="txtnom" class="form-control" placeholder="Leo Perez">
+                                            <input type="text" name="txtnom" class="form-control" placeholder="Pepa Pig">
                                         </div>
                                         <div class="form-group">
-                                            <label>Dni</label>
-                                            <input type="text" maxlength="8" name="txtdni" class="form-control" placeholder="01245678">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Direccion</label>
-                                            <input type="text" name="txtdire" class="form-control" placeholder="Chiclayo - La Victoria">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Email address</label>
+                                            <label>Email</label>
                                             <input type="email" name="txtemail" class="form-control" placeholder="email@example.com">
                                         </div>
                                         <div class="form-group">
                                             <label>Password</label>
                                             <input type="password" name="txtpass" class="form-control" placeholder="Password">
-                                        </div>                                  
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Telefono</label>
+                                            <input type="number" maxlength="8" name="txttelefono" class="form-control" placeholder="71852147">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="txtdire">Distrito</label>
+                                          <select class="form-select" name="txtdire" id="txtdire">
+                                              <option value="Ate">Ate</option>
+                                              <option value="Huaycan">Huaycan</option>
+                                              <option value="Chosica">Chosica</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txttipo">Tipo de usuario</label>
+                                            <select class="form-select" name="txttipo" id="txttipo">
+                                              <option value="Consultor">Consultor</option>
+                                              <option value="Cliente">Cliente</option>
+                                            </select>
+                                        </div>
                                         <button type="submit" name="accion" value="Registrar" class="btn btn-outline-danger btn-block">Crear Cuenta</button>
                                     </form>
                                 </div>                          

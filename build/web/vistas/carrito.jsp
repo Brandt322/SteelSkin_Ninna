@@ -1,7 +1,7 @@
 
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Locale"%>
-<%@page import="com.alexander.config.Fecha"%>
+<%@page import="com.steelskin.config.Fecha"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>
@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
         <link href="css/estilos1.css" rel="stylesheet" type="text/css"/>
-        <title>Carrito de Compras</title>
+        <title>Lista de Solicitudes</title>
     </head>
     <body>       
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -33,7 +33,7 @@
                         <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-plus-circle"></i> Ofertas del Dia</a>
                     </li>                   
                     <li class="nav-item">
-                        <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-plus-circle"></i> Seguir Comprando</a>
+                        <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-plus-circle"></i> Seguir buscando</a>
                     </li>                  
                 </ul>                                            
                 <ul class="navbar-nav btn-group my-2 my-lg-0" role="group">
@@ -44,7 +44,7 @@
                         <a class="dropdown-item" href="#">${user}</a>
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal">${correo}</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="Controlador?accion=MisCompras">Mis Solicitudes</a>
+                        <a class="dropdown-item" href="Controlador?accion=MisCompras">Mis compras</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="Controlador?accion=Salir"> <i class="fas fa-arrow-right"> Salir</i></a>                        
                     </div>
@@ -53,7 +53,7 @@
         </nav>
         <div class="container mt-4">
             <div class="d-flex">
-                <h2>Lista de deseos</h2>     
+                <h2>Lista de Solicitudes</h2>     
                 <%
                     Fecha fechaSistema = new Fecha();
                 %>                     

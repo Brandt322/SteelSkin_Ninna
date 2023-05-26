@@ -40,7 +40,7 @@
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="./Controlador?accion=Salir"> <i class="fas fa-arrow-right"> Salir</i></a>                        
                   </div>
-              </ul>     
+              </ul>
           </div>
         </nav>
         <div class="container mt-4">                 
@@ -127,27 +127,38 @@
                                     <form action="Controlador">                               
                                         <div class="form-group">
                                             <label>Nombres</label>
-                                            <input type="text" name="txtnom" class="form-control" placeholder="Leo Perez">
+                                            <input type="text" name="txtnom" class="form-control" placeholder="Pepa Pig">
                                         </div>
                                         <div class="form-group">
-                                            <label>Dni</label>
-                                            <input type="number" name="txtdni" class="form-control" placeholder="01245678">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Direccion</label>
-                                            <input type="text" name="txtdire" class="form-control" placeholder="Chiclayo - La Victoria">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Email address</label>
+                                            <label>Email</label>
                                             <input type="email" name="txtemail" class="form-control" placeholder="email@example.com">
                                         </div>
                                         <div class="form-group">
                                             <label>Password</label>
                                             <input type="password" name="txtpass" class="form-control" placeholder="Password">
-                                        </div>                                  
-                                        <button type="submit" data-toggle="modal" data-target="#myModal" name="accion" value="Registrar" class="btn btn-danger btn-block">Crear Cuenta</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Telefono</label>
+                                            <input type="number" maxlength="8" name="txttelefono" class="form-control" placeholder="71852147">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="txtdire">Distrito</label>
+                                          <select class="form-select" name="txtdire" id="txtdire">
+                                              <option value="Ate">Ate</option>
+                                              <option value="Huaycan">Huaycan</option>
+                                              <option value="Chosica">Chosica</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txttipo">Tipo de usuario</label>
+                                            <select class="form-select" name="txttipo" id="txttipo">
+                                              <option value="Consultor">Consultor</option>
+                                              <option value="Cliente">Cliente</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" name="accion" value="Registrar" class="btn btn-outline-danger btn-block">Crear Cuenta</button>
                                     </form>
-                                </div>                          
+                                </div>                                 
                             </div> 
                         </div>
                     </div>

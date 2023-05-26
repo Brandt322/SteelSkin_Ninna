@@ -24,7 +24,7 @@
                         <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-plus-circle"></i> Ofertas del Dia</a>
                     </li>                   
                     <li class="nav-item">
-                        <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-plus-circle"></i> Seguir Comprando</a>
+                        <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-plus-circle"></i> Seguir buscando</a>
                     </li>                   
                     <li class="nav-item">
                         <a class="nav-link" href="./Controlador?accion=carrito"><i class="fas fa-cart-plus"></i> Carrito</a>
@@ -46,13 +46,13 @@
             </div>
         </nav> 
         <div class="container mt-4">
-            <h2>Mi lista de solicitudes</h2>
+            <h2>Reporte de solicitudes</h2>
             <div class="row">            
                 <table class="table tab-pane">
                     <thead class="thead-light">
                         <tr class="text-center">
-                            <th>CODIGO DE COMPRA</th>                               
-                            <th>Fecha de Compra</th>
+                            <th>CODIGO DE SOLICITUD</th>                               
+                            <th>Fecha de Solicitud</th>
                             <th>Monto</th>                                                   
                             <th>Codigo de Pago</th>                                                   
                             <th>Estado</th>                                                   
@@ -68,7 +68,7 @@
                                 <td>P00${p.getIdPago()}</td>                                                                                                       
                                 <td>${p.getEstado()}</td>                                                                                                       
                                 <td>
-                                    <a href="Controlador?accion=verDetalle&idcompra=${p.getId()}">Ver Detalle</a>
+                                  <a href="Controlador?accion=verDetalle&idcompra=${p.getId()}">Ver Detalle</a>
                                 </td>                                                                                                       
                             </tr>
                         </c:forEach>
@@ -100,7 +100,7 @@
                                 </li>                          
                             </ul>  
                         </div>
-                        <div class="modal-body"> 
+                        <div class="modal-body">
                             <div class="tab-content" id="pills-tabContent">
                                 <!-- Iniciar Session -->
                                 <div class="tab-pane fade show active" id="pills-iniciar" role="tabpanel">
@@ -121,27 +121,38 @@
                                     <form action="Controlador">                               
                                         <div class="form-group">
                                             <label>Nombres</label>
-                                            <input type="text" name="txtnom" class="form-control" placeholder="Leo Perez">
+                                            <input type="text" name="txtnom" class="form-control" placeholder="Pepa Pig">
                                         </div>
                                         <div class="form-group">
-                                            <label>Dni</label>
-                                            <input type="number" name="txtdni" class="form-control" placeholder="01245678">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Direccion</label>
-                                            <input type="text" name="txtdire" class="form-control" placeholder="Chiclayo - La Victoria">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Email address</label>
+                                            <label>Email</label>
                                             <input type="email" name="txtemail" class="form-control" placeholder="email@example.com">
                                         </div>
                                         <div class="form-group">
                                             <label>Password</label>
                                             <input type="password" name="txtpass" class="form-control" placeholder="Password">
-                                        </div>                                  
-                                        <button type="submit" data-toggle="modal" data-target="#myModal" name="accion" value="Registrar" class="btn btn-danger btn-block">Crear Cuenta</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Telefono</label>
+                                            <input type="number" maxlength="8" name="txttelefono" class="form-control" placeholder="71852147">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="txtdire">Distrito</label>
+                                          <select class="form-select" name="txtdire" id="txtdire">
+                                              <option value="Ate">Ate</option>
+                                              <option value="Huaycan">Huaycan</option>
+                                              <option value="Chosica">Chosica</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txttipo">Tipo de usuario</label>
+                                            <select class="form-select" name="txttipo" id="txttipo">
+                                              <option value="Consultor">Consultor</option>
+                                              <option value="Cliente">Cliente</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" name="accion" value="Registrar" class="btn btn-outline-danger btn-block">Crear Cuenta</button>
                                     </form>
-                                </div>                          
+                                </div>                         
                             </div> 
                         </div>
                     </div>
