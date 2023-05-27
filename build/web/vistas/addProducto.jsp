@@ -8,38 +8,31 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
         <link href="css/estilos.css" rel="stylesheet" type="text/css"/>        
-        <title>Carrito de Solicitudes</title>
+        <title>Añadir productos</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <img src="img/Logo.png" alt="logo" />
+          <img src="img/Logo.svg" alt="logo" width="56" height="56"/>
           <a class="navbar-brand text-white" href="#"><h2>Steel<span class="h2 text-warning">Skin / Ninna</span></h2></a>  
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
+                  <li class="nav-item">
+                      <a class="nav-link" ${mostrarProductos ? '' : 'style="display:none;"'} href="./Controlador?accion=NuevoProducto">Productos</a>
                   </li>
+              </ul>
                   <li class="nav-item">
-                      <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-plus-circle"></i> Ofertas del Dia</a>
-                  </li>                   
-                  <li class="nav-item">
-                      <a class="nav-link" href="./Controlador?accion=carrito"><i class="fas fa-cart-plus">(<label style="color: darkorange">${cont}</label>)</i> Lista de deseos</a>
-                  </li>                     
-
-              </ul>                                           
+                      <a class="nav-link" ${mostrarHistorial ? '' : 'style="display:none;"'} href="Controlador?accion=HistorialCompras">Revisar historial de compras</a>
+                  </li> 
               <ul class="navbar-nav btn-group my-2 my-lg-0" role="group">
                   <a style="color: white; cursor: pointer" class="dropdown-toggle" data-toggle="dropdown">
                       <i class="fas fa-user-tie"></i> ${logueo}</a>
                   <div class="dropdown-menu text-center dropdown-menu-right">
-                      <a class="dropdown-item" href="#"><img src="../img/user.png" alt="60" height="60"/></a>                        
+                      <a class="dropdown-item" href="#"><img src="img/prev-foto.png" alt="60" height="60"/></a>                        
                       <a class="dropdown-item" href="#">${user}</a>
                       <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal">${correo}</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="Controlador?accion=MisCompras">Mis Compras</a>
-                      <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="./Controlador?accion=Salir"> <i class="fas fa-arrow-right"> Salir</i></a>                        
                   </div>
               </ul>     
@@ -57,7 +50,7 @@
                                 <div class="form-group">
                                     <label>Nombres:</label>
                                     <input type="text" name="txtNombre" class="form-control">
-                                </div>                     
+                                </div>
                                 <div class="form-group">
                                     <label>Descripcion</label>
                                     <textarea name="txtDescripcion" class="form-control"></textarea>

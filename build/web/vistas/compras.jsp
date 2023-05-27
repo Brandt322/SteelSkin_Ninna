@@ -10,7 +10,7 @@
     </head>
     <body>       
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <img src="img/Logo.png" alt="logo" />
+            <img src="img/Logo.svg" alt="logo" width="56" height="56"/>
             <a class="navbar-brand text-white" href="#"><h2>Steel<span class="h2 text-warning">Skin / Ninna</span></h2></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@
                         <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-plus-circle"></i> Ofertas del Dia</a>
+                        <a class="nav-link" href="./Controlador?accion=marcas">Marcas</a>
                     </li>                   
                     <li class="nav-item">
                         <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-plus-circle"></i> Seguir buscando</a>
@@ -34,7 +34,7 @@
                     <a style="color: white; cursor: pointer" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fas fa-user-tie"></i> ${logueo}</a>
                     <div class="dropdown-menu text-center dropdown-menu-right">
-                        <a class="dropdown-item" href="#"><img src="img/user.png" alt="60" height="60"/></a>                        
+                        <a class="dropdown-item" href="#"><img src="img/prev-foto.png" alt="60" height="60"/></a>                        
                         <a class="dropdown-item" href="#">${user}</a>
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal">${correo}</a>
                         <div class="dropdown-divider"></div>
@@ -46,13 +46,13 @@
             </div>
         </nav> 
         <div class="container mt-4">
-            <h2>Reporte de solicitudes</h2>
+            <h2>Reporte de compras</h2>
             <div class="row">            
                 <table class="table tab-pane">
                     <thead class="thead-light">
                         <tr class="text-center">
-                            <th>CODIGO DE SOLICITUD</th>                               
-                            <th>Fecha de Solicitud</th>
+                            <th>Codigo Compra</th>                               
+                            <th>Fecha de Compra</th>
                             <th>Monto</th>                                                   
                             <th>Codigo de Pago</th>                                                   
                             <th>Estado</th>                                                   
@@ -88,7 +88,7 @@
                             </button>                    
                         </div>
                         <div class="text-center">                         
-                            <img src="img/user.png" width="100" height="100">                         
+                            <img src="img/logo_user.png" width="100" height="100">                         
                         </div>
                         <div class="modal-header text-center">                      
                             <ul class="nav nav-pills">                           

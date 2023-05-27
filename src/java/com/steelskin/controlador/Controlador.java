@@ -74,6 +74,14 @@ public class Controlador extends HttpServlet {
                 request.setAttribute("totalPagar", totalPagar);
                 request.getRequestDispatcher("vistas/carrito.jsp").forward(request, response);
                 break;
+            case "marcas":
+                // Agregar el código para redirigir a Bienvenido.jsp
+                request.getRequestDispatcher("vistas/Bienvenido.jsp").forward(request, response);
+                break;
+            case "actualizaciones":
+                // Agregar el código para redirigir a Bienvenido.jsp
+                request.getRequestDispatcher("vistas/Actualizaciones.jsp").forward(request, response);
+                break;
             case "Comprar":
                 agregarCarrito(request);
                 request.getRequestDispatcher("Controlador?accion=carrito").forward(request, response);
@@ -112,7 +120,18 @@ public class Controlador extends HttpServlet {
                     logueo = cl.getNombres();
                     correo = cl.getEmail();
                 }
-                request.getRequestDispatcher("Controlador?accion=carrito").forward(request, response);
+                // Verificar el tipo de usuario y establecer la visibilidad de la opción "Productos"
+                if (cl.getTipo_usuario().equals("Consultor")) {
+                    request.setAttribute("mostrarProductos", true);
+                } else {
+                    request.setAttribute("mostrarProductos", false);
+                }
+                if (cl.getTipo_usuario().equals("Consultor")) {
+                    request.setAttribute("mostrarHistorial", true);
+                } else {
+                    request.setAttribute("mostrarHistorial", false);
+                }
+                request.getRequestDispatcher("Controlador?accion=home").forward(request, response);
                 break;
             case "Registrar":
                 String nombres = request.getParameter("txtnom");
@@ -128,7 +147,7 @@ public class Controlador extends HttpServlet {
                 cl.setDireccion(dir);
                 cl.setTipo_usuario(tip);
                 cldao.AgregarCliente(cl);
-                request.getRequestDispatcher("Controlador?accion=carrito").forward(request, response);
+                request.getRequestDispatcher("Controlador?accion=home").forward(request, response);
                 break;
             case "Nuevo":
                 listaProductos = new ArrayList();
@@ -191,6 +210,15 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("vistas/compras.jsp").forward(request, response);
                 } else if (listaProductos.size() > 0) {
                     request.getRequestDispatcher("Controlador?accion=carrito").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("Controlador?accion=home").forward(request, response);
+                }
+                break;
+            case "HistorialCompras":
+                if (cl.getId() != 0) {
+                    List<Compra> compras = cdao.listarCompras();
+                    request.setAttribute("historial", compras);
+                    request.getRequestDispatcher("vistas/HistorialCompras.jsp").forward(request, response);
                 } else {
                     request.getRequestDispatcher("Controlador?accion=home").forward(request, response);
                 }

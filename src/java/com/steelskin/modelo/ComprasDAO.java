@@ -82,6 +82,32 @@ public class ComprasDAO {
         }
         return lista;
     }
+    
+    public List<Compra> listarCompras() {
+    List<Compra> lista = new ArrayList<>();
+    String sql = "SELECT * FROM compras";
+    try {
+        con = cn.getConnection();
+        ps = con.prepareStatement(sql);
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            Compra com = new Compra();
+            com.setId(rs.getInt(1));
+            com.setIdCliente(rs.getInt(2));
+            com.setIdPago(rs.getInt(3));
+            com.setFecha(rs.getString(4));
+            com.setMonto(rs.getDouble(5));
+            com.setEstado(rs.getString(6));
+            lista.add(com);
+        }
+        con.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return lista;
+}
+
+
 
     public List Detalle(int id) {
         List lista = new ArrayList();

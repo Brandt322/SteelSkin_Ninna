@@ -19,7 +19,7 @@
     </head>
     <body>       
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <img src="img/Logo.png" alt="logo" />
+            <img src="img/Logo.svg" alt="logo" width="56" height="56"/>
             <a class="navbar-brand text-white" href="#"><h2>Steel<span class="h2 text-warning">Skin / Ninna</span></h2></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
                         <a class="nav-link" href="./Controlador?accion=Home"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-plus-circle"></i> Ofertas del Dia</a>
+                        <a class="nav-link" href="./Controlador?accion=marcas">Marcas</a>
                     </li>                   
                     <li class="nav-item">
                         <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-plus-circle"></i> Seguir buscando</a>
@@ -40,7 +40,7 @@
                     <a style="color: white; cursor: pointer" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fas fa-user-tie"></i> ${logueo}</a>
                     <div class="dropdown-menu text-center dropdown-menu-right">
-                        <a class="dropdown-item" href="#"><img src="img/user.png" alt="60" height="60"/></a>                        
+                        <a class="dropdown-item" href="#"><img src="img/prev-foto.png" alt="60" height="60"/></a>                        
                         <a class="dropdown-item" href="#">${user}</a>
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal">${correo}</a>
                         <div class="dropdown-divider"></div>
@@ -103,17 +103,17 @@
                         </div>
                         <div class="card-body">
                             <label>Subtotal:</label>
-                            <a class="form-control text-center"><i class="fas fa-dollar-sign h5"> ${totalPagar}0</i></a>
+                            <a class="form-control text-center"><span class="h5">S/</span> ${totalPagar}0</a>
                             <label>Precio Envio:</label>
-                            <a class="form-control text-center"><i class="fas fa-dollar-sign h5"> 0.00</i></a>
+                            <a class="form-control text-center"><span class="h5">S/</span> 0.00</a>
                             <label>Descuento:</label>
-                            <a class="form-control text-center"><i class="fas fa-dollar-sign h5"> 0.00</i></a>
+                            <a class="form-control text-center"><span class="h5">S/</span> 0.00</a>
                             <label>Total a Pagar:</label>
-                            <a class="form-control text-center"><i class="fas fa-dollar-sign h4 primary"> ${totalPagar}0</i></a>
+                            <a class="form-control text-center"><span class="h5">S/</span> ${totalPagar}0</a>
                         </div>
                         <div class="card-footer">
                             <a href="Controlador?accion=GenerarCompra" class="btn btn-danger btn-block">Generar Compra</a>
-                            <a href="#" data-toggle="modal" data-target="#myModalPago" class="btn btn-info btn-block">Realizar Pago</a>
+                            <a href="#" data-toggle="modal" data-target="#myModalPago" class="btn btn-warning btn-block">Realizar Pago</a>
                         </div>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                             </button>                    
                         </div>
                         <div class="text-center">                         
-                            <img src="img/user.png" width="100" height="100">                         
+                            <img src="img/logo_user.png" width="100" height="100">                         
                         </div>
                         <div class="modal-header text-center">                      
                             <ul class="nav nav-pills">                           
@@ -195,7 +195,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">         
                 <div class="modal-content">                   
                     <div class="modal-header text-center"> 
-                        <label><i class="fa-dollar-sign"></i>Realizar Pago</label>
+                      <label><span class="h5">S/</span> Realizar Pago</label>
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
                         </button>  
@@ -215,9 +215,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Monto</label>
-                                        <input type="text" name="txtmonto" value="$.${totalPagar}0" class="form-control h1">
+                                        <input type="text" name="txtmonto" value="S/.${totalPagar}0" class="form-control h1">
                                     </div>                                   
-                                    <button type="submit" name="accion" value="RealizarPago" class="btn btn-info btn-block">Pagar</button>
+                                    <button type="submit" name="accion" value="RealizarPago" class="btn btn-success btn-block">Pagar</button>
                                 </form>
                             </div>
 

@@ -10,8 +10,8 @@
         <title>Carrito de Solicitudes</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <img src="img/Logo.png" alt="logo"/>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
+          <img src="img/Logo.svg" alt="logo" width="56" height="56"/>
           <a class="navbar-brand text-white" href="#"><h2>Steel<span class="h2 text-warning">Skin / Ninna</span></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -22,29 +22,32 @@
                       <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-plus-circle"></i> Ofertas del Dia</a>
+                      <a class="nav-link" href="./Controlador?accion=marcas">Marcas</a>
                   </li>                   
                   <li class="nav-item">
                       <a class="nav-link" href="./Controlador?accion=carrito"><i class="fas fa-cart-plus">(<label style="color: darkorange">${cont}</label>)</i> Lista de solicitudes</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="./Controlador?accion=NuevoProducto">Productos</a>
+                      <a class="nav-link" ${mostrarProductos ? '' : 'style="display:none;"'} href="./Controlador?accion=NuevoProducto">Productos</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" ${mostrarHistorial ? '' : 'style="display:none;"'} href="Controlador?accion=HistorialCompras">Revisar historial de compras</a>
                   </li> 
                   <li class="nav-item">
-                      <a class="nav-link" href="#">Ultimas actualizaciones</a>
+                      <a class="nav-link" href="./Controlador?accion=actualizaciones">Ultimas actualizaciones</a>
                   </li> 
               </ul>
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                   <!--<form class="form-inline my-2 my-lg-0">-->
-                  <input style="width:400px" class="form-control mr-sm-2" id="txtBuscar">
-                  <button class="btn btn-outline-info my-2 my-sm-0" id="btnBuscar"><i class="fas fa-search"></i> Buscar</button>
+                  <input type="text" style="width:300px" class="form-control mr-sm-2" id="txtBuscar" name="txtBuscar"  onkeyup="filtrarProductos()" placeholder="Que necesitas buscar?">
+                  <!-- <button type="submit" class="btn btn-outline-info my-2 my-sm-0" id="btn_buscar"><i class="fas fa-search" ></i> Buscar</button> -->
                   <!-- </form>       -->                 
               </ul>                                
               <ul class="navbar-nav btn-group my-2 my-lg-0" role="group">
                   <a style="color: white; cursor: pointer" class="dropdown-toggle" data-toggle="dropdown">
                       <i class="fas fa-user-tie"></i> ${logueo}</a>
                   <div class="dropdown-menu text-center dropdown-menu-right">
-                      <a class="dropdown-item" href="#"><img src="img/user.png" alt="60" height="60"/></a>                        
+                      <a class="dropdown-item" href="#"><img src="img/prev-foto.png" alt="60" height="60"/></a>                        
                       <a class="dropdown-item" href="#">${user}</a>
                       <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal">${correo}</a>
                       <div class="dropdown-divider"></div>
@@ -58,7 +61,7 @@
         <div class="container mt-4">
           <div class="row row-cols-1 row-cols-md-3 g-4">
             <c:forEach var="p" items="${productos}">
-              <div class="col-sm-4 mb-4">
+              <div class="col-sm-4 mb-4 producto">
                 <div class="card h-100 ">
                   <div class="card-header">
                     <label>S/.${p.getPrecio()}</i></label>
@@ -89,7 +92,7 @@
                             </button>                    
                         </div>
                         <div class="text-center">                         
-                            <img src="img/user.png" width="100" height="100">                         
+                            <img src="img/logo_user.png" width="100" height="100">                         
                         </div>
                         <div class="modal-header text-center">                      
                             <ul class="nav nav-pills">                           
@@ -164,5 +167,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="js/index.js" type="text/javascript"></script>
+        <script src="js/buscar.js" type="text/javascript"></script>
     </body>
 </html>

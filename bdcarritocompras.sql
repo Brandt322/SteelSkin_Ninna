@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 13-06-2020 a las 18:15:36
--- Versión del servidor: 5.7.17-log
--- Versión de PHP: 5.6.30
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 27-05-2023 a las 06:11:33
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -25,27 +26,36 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `cliente`
 --
+-- Creación: 26-05-2023 a las 04:04:26
+-- Última actualización: 27-05-2023 a las 03:53:24
+--
 
 CREATE TABLE `cliente` (
   `idCliente` int(11) UNSIGNED NOT NULL,
-  `Dni` varchar(9) DEFAULT NULL,
-  `Nombres` varchar(255) DEFAULT NULL,
-  `Direccion` varchar(255) DEFAULT NULL,
-  `Email` varchar(255) DEFAULT NULL,
-  `Password` varchar(20) DEFAULT NULL
+  `Nombres` varchar(50) DEFAULT NULL,
+  `Email` varchar(60) DEFAULT NULL,
+  `Password` varchar(60) DEFAULT NULL,
+  `Telefono` int(20) DEFAULT NULL,
+  `Direccion` varchar(20) DEFAULT NULL,
+  `Tipo_usuario` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`idCliente`, `Dni`, `Nombres`, `Direccion`, `Email`, `Password`) VALUES
-(17, '78019778', 'Alexander Fuentes Medina', 'Lambayeque-Ferreñafe', 'alexanderfuentes@gmail.com', 'admin');
+INSERT INTO `cliente` (`idCliente`, `Nombres`, `Email`, `Password`, `Telefono`, `Direccion`, `Tipo_usuario`) VALUES
+(21, 'Brandon Gamboa', 'bgamsad.322@gmail.com', '322322', 963564585, 'Chosica', 'Cliente'),
+(22, 'Chris Salcedo', 'chris.22@gmail.com', 'zekken', 956365485, 'Huaycan', 'Consultor'),
+(23, 'Test Test', 'Test@gmail.com', 'test', 963258852, 'Ate', 'Cliente');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `compras`
+--
+-- Creación: 26-05-2023 a las 00:08:20
+-- Última actualización: 27-05-2023 a las 01:32:52
 --
 
 CREATE TABLE `compras` (
@@ -57,10 +67,22 @@ CREATE TABLE `compras` (
   `Estado` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `compras`
+--
+
+INSERT INTO `compras` (`idCompras`, `idCliente`, `idPago`, `FechaCompras`, `Monto`, `Estado`) VALUES
+(7, 21, 16, '2023-05-25', 1400, 'Cancelado - En Proceso de Envio'),
+(8, 21, 22, '2023-05-26', 99.8, 'Cancelado - En Proceso de Envio'),
+(9, 22, 23, '2023-05-26', 113.69999999999999, 'Cancelado - En Proceso de Envio');
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `detalle_compras`
+--
+-- Creación: 26-05-2023 a las 00:08:20
+-- Última actualización: 27-05-2023 a las 01:32:52
 --
 
 CREATE TABLE `detalle_compras` (
@@ -71,10 +93,22 @@ CREATE TABLE `detalle_compras` (
   `PrecioCompra` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `detalle_compras`
+--
+
+INSERT INTO `detalle_compras` (`idDetalle`, `idProducto`, `idCompras`, `Cantidad`, `PrecioCompra`) VALUES
+(11, 44, 8, 2, 49.9),
+(12, 37, 9, 2, 31.9),
+(13, 44, 9, 1, 49.9);
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `pago`
+--
+-- Creación: 26-05-2023 a las 00:08:20
+-- Última actualización: 27-05-2023 a las 01:32:44
 --
 
 CREATE TABLE `pago` (
@@ -82,17 +116,34 @@ CREATE TABLE `pago` (
   `Monto` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `pago`
+--
+
+INSERT INTO `pago` (`idPago`, `Monto`) VALUES
+(16, 1400),
+(17, 1400),
+(18, 63.8),
+(19, 63.8),
+(20, 31.9),
+(21, 49.9),
+(22, 99.8),
+(23, 113.69999999999999);
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `producto`
+--
+-- Creación: 26-05-2023 a las 07:17:44
+-- Última actualización: 27-05-2023 a las 03:48:01
 --
 
 CREATE TABLE `producto` (
   `idProducto` int(11) UNSIGNED NOT NULL,
   `Nombres` varchar(255) DEFAULT NULL,
   `Foto` varchar(255) DEFAULT NULL,
-  `Descripcion` varchar(255) DEFAULT NULL,
+  `Descripcion` varchar(455) DEFAULT NULL,
   `Precio` double DEFAULT NULL,
   `Stock` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -102,19 +153,16 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`idProducto`, `Nombres`, `Foto`, `Descripcion`, `Precio`, `Stock`) VALUES
-(20, 'iPhone 6s', 'http://localhost:8000/carrito/iphone 6s.png', 'iOS 11\nCapacidad 64GB\nChip A9 con arquitectura de 64 bits\nCoprocesador de movimiento M9 integrado\nCamara de 12 Mpx', 700, 100),
-(21, 'iPhone 8 Plus', 'http://localhost:8000/carrito/iphone 8.jpg', 'iOS 13 Capacidad 128GB \nChip A9 con arquitectura de 64 bits \nCoprocesador de movimiento M9 integrado Camara de 24 Mpx', 1500, 1000),
-(22, 'iPhone 11 Pro Max', 'http://localhost:8000/carrito/iphone 11.jpg', 'iOS 13 Capacidad 128GB Chip A9 con arquitectura de 64 bits Coprocesador de movimiento M9 integrado Camara Dual de 24 Mpx', 1600, 1000),
-(23, 'AirPods - Apple', 'http://localhost:8000/carrito/airpods.jpg', 'Los AirPods ahora te ofrecen una duracion inigualable de 5 horas de audio y hasta 3 horas para hablar con una sola carga', 150, 100),
-(24, 'iPad  Pro - Apple', 'http://localhost:8000/carrito/Ipad.png', 'Face ID\nEl A12X Bionic es el chip mas inteligente y potente que hemos creado hasta ahora. Capacidad de 256GB Pantalla 4K ', 2400, 1000),
-(25, 'Apple - Pencil', 'http://localhost:8000/carrito/applepencil.png', 'El Apple Pencil reinventada la forma de dibujar, tomar notas y marcar documentos para hacerla mÃ¡s intuitiva, precisa y mÃ¡gica.', 200, 1000),
-(26, 'MacBook Air', 'http://localhost:8000/carrito/macbookair.jpg', 'Pantalla de retina de alta resolucion 2560 x 1600 La MacBook Air ahora trae Touch ID Capacidad de 1TB SSD Memoria RAM de 16GB DDR4 Intel Core i7 de Septima generacion.', 4500, 1000),
-(28, 'MacBook Pro', 'http://localhost:8000/carrito/macpro.jpg', 'Pantalla de retina de alta resolucion 2560 x 1600 La MacBook Pro ahora trae Touch ID Capacidad de 2TB SSD Memoria RAM de 32GB DDR4 Intel Core i9 de novena generacion.', 16200, 1000),
-(29, 'TV - Apple', 'http://localhost:8000/carrito/tv.jpg', 'Una forma de ver television como siempre sonaste: tus servicios de streaming favoritos, miles de titulos para comprar o alquilar, e historias originales de Apple TV+ ', 1500, 5000),
-(30, 'Apple Watch Series 3', 'http://localhost:8000/carrito/relok.png', 'Monitorea tu salud, Los calculos Pararse, Moverse y Ejercicio te muestran todos los movimientos que haces diariamente. Nunca te pierdas una llamada o notificacion importante, llamada automaticas', 450, 1200),
-(31, 'iMac Pro - Apple', 'http://localhost:8000/carrito/imac.jpg', 'Procesador Xeon de\n8, 10, 14 o 18 nucleos\nTurbo Boost de hasta 4.5 GHz\nHasta 42 MB de cache. Gracias al GPU Radeon Pro Vega, la iMac Pro ofrece los graficos mÃ¡s espectaculares de todas las Mac', 5600, 100),
-(32, 'Home Pod - Apple', 'http://localhost:8000/carrito/home.jpg', 'Dimensiones:\n17,2 cm de alto\n14,2 cm de ancho\n\nPeso:\n2,5 kg\n\nColor:\nGris espacial\nBlanco\nWiFi 802.11ac con MIMO\nAcceso directo para invitados\nBluetooth 5.0\nAdmite altavoces en varias habitaciones con AirPlay ', 500, 200),
-(33, 'iPhone 11 Pro max', 'http://localhost:8000/carrito/iphone11.jfif', 'iOS 13 Capacidad 128GB Chip A12 con arquitectura de 64 bits Coprocesador de movimiento M9 integrado Camara de 48 Mpx', 5000, 100);
+(34, ' Magnat select', 'http://localhost:8000/carrito/Magnat select.png', 'ORIENTAL ESPECIADA. Sofisticado y especiado modernas notas de jenjibre de Madagascar y maderas ambaradas.', 110.9, 10),
+(37, 'Active men', 'http://localhost:8000/carrito/activeMen.jpg', 'Aroma herbal con frescas notas de bergamota y menta.', 31.9, 5),
+(44, 'Cadena hope cross', 'http://localhost:9443/carrito/cadena_cross.png', 'BaÃ±o de oro de 24k, collar mediano de 60 cm.', 49.9, 2),
+(45, 'Reloj frescott', 'http://localhost:9443/carrito/reloj_frescott.png', 'Caja de metal de 4,5 cm, correa de cuero de 26cm, incluye 3 cronografos decorativos.', 114.9, 2),
+(46, 'HOMME', 'http://localhost:9443/carrito/shampoo_homme.png', 'Shampoo para el control de caida de cabello y de uso diario. 250ml. Su textura con microesferas ayuda a eliminar cualquier residuo de grasos o impurezas en el cabello y cuero cabelludo, dando como resultado un cabello limpio, fresco y sano.', 27, 6),
+(47, 'BLEU INTENSE', 'http://localhost:9443/carrito/bleu_intense.png', 'HERBAL AROMATICA. La frescura del reventar de las olas y notas herbales de salvia. Gracias a sus notas frescas y aromÃ¡ticas es ideal para cualquier ocasiÃ³n de dÃ­a.', 69, 10),
+(48, 'RELOJ BARSTOW', 'http://localhost:9443/carrito/reloj_barstow.png', 'Caja de metal plateado y correa de cuero marrÃ³n. CronÃ³grafos decorativos. Largo aprox.: 26 cm.', 235, 2),
+(49, 'Set Nitro Ultimate', 'http://localhost:9443/carrito/set_nitro_ultimate.png', 'El set de regalo incluye un perfume de hombre Nitro Ultimate 90ml con aroma herbal aromÃ¡tico, una increÃ­ble combinaciÃ³n de acordes minerales, toques maderosos de Ã¡mbar y neuro energy accord que activa tu energÃ­a. AcompaÃ±ado del desodorante de hombre Trax Mysterious Aerosol 103g con aroma cool e intenso de hierbas verdes que te darÃ¡ una sensaciÃ³n de limpieza y extrema frescura durante el dÃ­a.', 101.5, 4),
+(50, 'Trax So Close', 'http://localhost:9443/carrito/trax_so_close.png', 'El Desodorante de Hombre Trax So Close en Aerosol cuenta con un aroma maderoso. Es un desodorante para hombre sin alcohol que protege tus axilas les brinda una sensaciÃ³n de limpieza y extrema frescura durante todo el dÃ­a.', 30.9, 5),
+(51, 'Dancing Sunset', 'http://localhost:9443/carrito/dancing_sunset.png', 'SorprÃ©ndete con el aroma oriental dulce del perfume Dancing Sunset y sus radiantes notas vibrantes de flores de sambac y sugar ambar.', 72.5, 4);
 
 --
 -- Índices para tablas volcadas
@@ -162,27 +210,32 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idCliente` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idCliente` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
 --
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `idCompras` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idCompras` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT de la tabla `detalle_compras`
 --
 ALTER TABLE `detalle_compras`
-  MODIFY `idDetalle` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idDetalle` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `idPago` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idPago` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `idProducto` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -200,6 +253,7 @@ ALTER TABLE `compras`
 ALTER TABLE `detalle_compras`
   ADD CONSTRAINT `detalle_compras_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `detalle_compras_ibfk_2` FOREIGN KEY (`idCompras`) REFERENCES `compras` (`idCompras`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

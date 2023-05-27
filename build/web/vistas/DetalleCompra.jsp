@@ -11,7 +11,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <img src="img/Logo.png" alt="logo" />
+          <img src="img/Logo.svg" alt="logo" width="56" height="56"/>
           <a class="navbar-brand text-white" href="#"><h2>Steel<span class="h2 text-warning">Skin / Ninna</span></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -22,7 +22,7 @@
                       <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="./Controlador?accion=home"><i class="fas fa-plus-circle"></i> Ofertas del Dia</a>
+                      <a class="nav-link" href="./Controlador?accion=marcas">Marcas</a>
                   </li>                   
                   <li class="nav-item">
                       <a class="nav-link" href="./Controlador?accion=carrito"><i class="fas fa-cart-plus">(<label style="color: darkorange">${cont}</label>)</i> Carrito</a>
@@ -32,7 +32,7 @@
                   <a style="color: white; cursor: pointer" class="dropdown-toggle" data-toggle="dropdown">
                       <i class="fas fa-user-tie"></i> ${logueo}</a>
                   <div class="dropdown-menu text-center dropdown-menu-right">
-                      <a class="dropdown-item" href="#"><img src="img/user.png" alt="60" height="60"/></a>                        
+                      <a class="dropdown-item" href="#"><img src="img/img/prev-foto.png" alt="60" height="60"/></a>                        
                       <a class="dropdown-item" href="#">${user}</a>
                       <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal">${correo}</a>
                       <div class="dropdown-divider"></div>
@@ -45,8 +45,8 @@
         </nav>
         <div class="container mt-4">                 
             <div class="card"> 
-                <div class="card-header d-flex">
-                    <h2>Detalle</h2>
+                <div class="card-header d-flex justify-content-between">
+                    <h2>Detalles de la Compra</h2>
                     <a href="Controlador?accion=MisCompras" class="pt-2 pl-4">Regresar</a>
                 </div>   
                 <div class="card-body">
@@ -94,7 +94,7 @@
                             </button>                    
                         </div>
                         <div class="text-center">                         
-                            <img src="img/user.png" width="100" height="100">                         
+                            <img src="img/logo_user.png" width="100" height="100">                         
                         </div>
                         <div class="modal-header text-center">                      
                             <ul class="nav nav-pills">                           

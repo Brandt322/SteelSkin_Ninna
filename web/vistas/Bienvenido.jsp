@@ -1,16 +1,20 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- 
+    Document   : Bienvenido
+    Created on : 26 may. 2023, 15:15:03
+    Author     : USUARIO
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
-        <title>Detalle de Solicitud</title>
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">       
+    <title>Marcas</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <img src="img/Logo.svg" alt="logo" width="56" height="56"/>
           <a class="navbar-brand text-white" href="#"><h2>Steel<span class="h2 text-warning">Skin / Ninna</span></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,64 +29,27 @@
                       <a class="nav-link" href="./Controlador?accion=marcas">Marcas</a>
                   </li>                   
                   <li class="nav-item">
-                      <a class="nav-link" href="./Controlador?accion=carrito"><i class="fas fa-cart-plus">(<label style="color: darkorange">${cont}</label>)</i> Carrito</a>
-                  </li>                      
-              </ul>                                    
+                      <a class="nav-link" href="./Controlador?accion=carrito"><i class="fas fa-cart-plus">(<label style="color: darkorange">${cont}</label>)</i> Lista de solicitudes</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./Controlador?accion=actualizaciones">Ultimas actualizaciones</a>
+                  </li> 
+              </ul>                              
               <ul class="navbar-nav btn-group my-2 my-lg-0" role="group">
                   <a style="color: white; cursor: pointer" class="dropdown-toggle" data-toggle="dropdown">
                       <i class="fas fa-user-tie"></i> ${logueo}</a>
                   <div class="dropdown-menu text-center dropdown-menu-right">
-                      <a class="dropdown-item" href="#"><img src="img/img/prev-foto.png" alt="60" height="60"/></a>                        
+                      <a class="dropdown-item" href="#"><img src="img/prev-foto.png" alt="60" height="60"/></a>                        
                       <a class="dropdown-item" href="#">${user}</a>
                       <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal">${correo}</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="Controlador?accion=MisCompras">Mis Compras</a>
+                      <a class="dropdown-item" href="Controlador?accion=MisCompras">Mis compras</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="./Controlador?accion=Salir"> <i class="fas fa-arrow-right"> Salir</i></a>                        
                   </div>
-              </ul>
+              </ul>     
           </div>
         </nav>
-        <div class="container mt-4">                 
-            <div class="card"> 
-                <div class="card-header d-flex justify-content-between">
-                    <h2>Detalles de la Compra</h2>
-                    <a href="Controlador?accion=MisCompras" class="pt-2 pl-4">Regresar</a>
-                </div>   
-                <div class="card-body">
-                    <table class="table tab-pane">
-                        <thead class="thead-light">
-                            <tr class="text-center">
-                                <th>CODIGO COMPRA</th>                               
-                                <th>Articulo</th>
-                                <th>Cantidad</th>
-                                <th>Precio Compra</th>                                                   
-                                <th></th>                                                   
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="p" items="${myDetalle}">
-                                <tr class="text-center">
-                                    <td>C00${p.getIdcompra()}</td> 
-                                    <td>                                        
-                                        <label><i>${p.producto.nombres}</i></label><br>                                      
-                                        <img src="${p.producto.imagen}" width="80" height="60">
-                                    </td>                                                                
-                                    <td>${p.getCantidad()}</td>
-                                    <td>${p.getPrecioCompra()}</td>                                                                                                      
-
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table> 
-                </div>
-                <div class="card-footer d-flex">
-                    <label class="col-sm-9 text-right mt-1">Monto Total de la Compra</label>
-                    <input type="text" class=" text-center form-control col-sm-3" readonly="" value="$.${montoPagar}0" style="font-size: 20px; font-family: monospace">
-                </div>
-            </div>          
-        </div> 
-
         <!-- Modal Iniciar Session o Registrarse -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -119,7 +86,7 @@
                                             <label>Password</label>
                                             <input type="password" name="txtpass" class="form-control" placeholder="Password">
                                         </div>                                   
-                                        <button type="submit" name="accion" value="Validar" class="btn btn-danger btn-block">Iniciar</button>
+                                        <button type="submit" name="accion" value="Validar" class="btn btn-outline-danger btn-block">Iniciar</button>
                                     </form>
                                 </div>
                                 <!-- Registrarse -->
@@ -158,16 +125,60 @@
                                         </div>
                                         <button type="submit" name="accion" value="Registrar" class="btn btn-outline-danger btn-block">Crear Cuenta</button>
                                     </form>
-                                </div>                                 
+                                </div>                          
                             </div> 
                         </div>
                     </div>
                 </div>
             </div>
-        </div>        
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        </div>
+        <div class="container">
+            <h2 class="text-center mt-5">Bienvenido a StellSkin / Ninna</h2>
+            <p class="h4 text-center">Este es un espacio en donde podras encontrar productos exclusivamente para hombres </p>
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+                <div class="col">
+                    <a class="navbar-brand" href="#">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">L’BEL</h4>
+                            </div>
+                            <img src="img/lbell.svg" class="card-img-bottom" alt="...">
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="navbar-brand" href="#">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">CYZONE</h4>
+                            </div>
+                            <img src="img/cyzone.svg" class="card-img-bottom" alt="...">
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="navbar-brand" href="#">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">ésika</h4>
+                            </div>
+                            <img src="img/esika.svg" class="card-img-bottom" alt="...">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5 position-relative h-auto">
+            <img class="img-fluid w-100 position-relative" src="img/info-section.png"/>
+            
+        </div>
+        <div class="container-fluid mt-5 d-flex justify-content-between bg-gray">
+            <p>© Copyright y todos los derechos reservados</p>
+            <p>Información valida solo para Peru, Lima 21 de abril del 2023</p>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-    </body>
+        <script src="js/index.js" type="text/javascript"></script>
+  </body>
 </html>
